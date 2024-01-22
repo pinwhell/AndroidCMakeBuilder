@@ -1,93 +1,56 @@
-# Android CMake Build Tool
+# AndroidCMakeBuilder
 
-This set of scripts provides a straightforward build system for Android projects using CMake and the Android NDK. The tool is designed for ease of use and requires minimal configuration.
+**AndroidCMakeBuilder** is a set of scripts for configuring and building Android native projects using CMake. This simplifies the process of setting up an Android development environment and streamlines the build process.
 
 ## Prerequisites
 
-Before using this tool, ensure you have the following prerequisites:
+Before using these scripts, ensure that you have the following prerequisites installed and configured:
 
-1. **Android NDK:**
-   - Download and install the Android NDK.
-   - Set the `ANDROID_HOME` environment variable to the NDK path.
+- [Android NDK](https://developer.android.com/ndk)
+- [Ninja Build System](https://ninja-build.org/)
 
-2. **System PATH:**
-   - Add the folder containing these scripts to your system's PATH. This ensures that the commands can be executed from any location in the command prompt.
-
-## CMake Configuration
-
-For CMake to work with the Android NDK, a configuration file (`ndk_build_cfg.cmake`) is required. Users have two options to set up this configuration:
-
-### 1. Manual Configuration
-
-Copy the provided `ndk_build_cfg.cmake` file into your project and include it in your CMakeLists.txt file:
-
-```cmake
-# CMakeLists.txt
-
-# Include the ndk_build_cfg.cmake configuration file
-include(path/to/ndk_build_cfg.cmake)
-
-# Rest of your CMake configuration...
-```
-
-### 2. Environment Variable Installer
-
-Run the following command to set the ANDROID_CMAKE_BUILDER environment variable:
-
-```bash
-android-cmake-builder-install.bat
-```
-
-This allows you to use the configured ndk_build_cfg.cmake directly in your CMake files:
-
-```cmake
-# CMakeLists.txt
-
-# Include the ndk_build_cfg.cmake configuration file using the environment variable
-include($ENV{ANDROID_CMAKE_BUILDER}/ndk_build_cfg.cmake)
-
-# Rest of your CMake configuration...
-```
+Make sure that the necessary environment variables, such as `ANDROID_NDK_ROOT`, are set, and the Ninja build system is in your system's `PATH`.
+Also make sure that the scripts folder is included in the `PATH`.
 
 ## Usage
 
-Navigate to your Android project directory in the command prompt and use the following commands:
-### 1. Configure and Build
+The repository consists of three main scripts:
 
-```bash
-android-cmake-cfg-build.bat [BuildType] [ABI] [AndroidPlatform, optional]
-```
+1. **android-cmake-cfg.bat:**
+   - Configures the Android project using CMake.
+   - Parameters:
+     - BuildType: Debug or Release
+     - ABI: armeabi-v7a, arm64-v8a, x86, x86_64
+     - AndroidPlatform: Android API level
+   - Example: `android-cmake-cfg.bat Release armeabi-v7a android-21`
 
-    [BuildType]: Specify the build type (e.g., Debug or Release).
-    [ABI]: Specify the ABI (e.g., armeabi-v7a, arm64-v8a, x86, x86_64).
-    [AndroidPlatform, optional]: Specify the Android platform version (e.g., android-21).
+2. **android-cmake-build.bat:**
+   - Builds the Android project configured by CMake.
+   - Parameters:
+     - BuildType: Debug or Release
+     - ABI: armeabi-v7a, arm64-v8a, x86, x86_64
+   - Example: `android-cmake-build.bat Release armeabi-v7a`
 
-### 2. Install Build Tool
+3. **android-cmake-cfg-build.bat:**
+   - Wraps the configuration and build process.
+   - Parameters:
+     - BuildType: Debug or Release
+     - ABI: armeabi-v7a, arm64-v8a, x86, x86_64
+     - AndroidPlatform: Android API level
+   - Example: `android-cmake-cfg-build.bat Release armeabi-v7a android-21`
 
-```bash
-android-cmake-builder-install.bat
-```
+Execute these scripts from the command line in the root directory of your CMake Native Android project.
 
-This script sets the ANDROID_CMAKE_BUILDER environment variable based on the tool's directory. Ensure that the script is executed with the necessary permissions.
-Customization
+## Important Notes
 
-    Environment Variables:
-        Ensure that the required environment variables like ANDROID_HOME are set before using these scripts.
-
-    Script Customization:
-        Users can customize the scripts to fit specific project structures or requirements.
-
-## Example
-
-```bash
-cd path/to/your/android/project
-android-cmake-cfg-build.bat Debug armeabi-v7a android-21
-```
+- Adjust the scripts if needed to match your specific project requirements.
 
 ## License
 
-This tool is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
-Special thanks to the community for contributions and feedback.
+- These scripts were inspired by the need for a streamlined CMake-based Android project setup.
+
+Feel free to contribute or report issues to enhance the functionality of AndroidCMakeBuilder.
