@@ -28,16 +28,18 @@ if errorlevel 1 (
     exit /b 1
 )
 
+set android_platform = %3
+
 REM Set the source directory, build directory, and other variables
 set source_dir=.
 
 set build_dir=build/%1_%2
 set build_type=%1
 set build_abi=%2
-set android_platform=%3
+
 
 REM Construct the build command using the provided parameters
-set full_configure_command=cmake -S %source_dir% -B %build_dir% -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=%build_type% -DANDROID_PLATFORM=%android_platform% -DANDROID_ABI=%build_abi%
+set full_configure_command=cmake -S %source_dir% -B %build_dir% -G "Ninja" -DCMAKE_TOOLCHAIN_FILE=%ANDROID_HOME%/build/cmake/android.toolchain.cmake -DCMAKE_BUILD_TYPE=%build_type% -DANDROID_PLATFORM=%android_platform% -DANDROID_ABI=%build_abi%
 
 REM Display the constructed command (optional)
 REM echo Running command: %full_configure_command%
