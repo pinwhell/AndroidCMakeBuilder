@@ -1,6 +1,6 @@
 @echo off
 
-set cfg_cmd=android-cmake-cfg %1 %2 %3
+set cfg_cmd=android-cmake-cfg %*
 
 call %cfg_cmd%
 
