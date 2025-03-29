@@ -9,7 +9,7 @@ Before using these scripts, ensure that you have the following prerequisites ins
 - [Android NDK](https://developer.android.com/ndk)
 - [Ninja Build System](https://ninja-build.org/)
 
-Make sure that the necessary environment variables, such as `ANDROID_NDK_ROOT`, are set, and the Ninja build system is in your system's `PATH`.
+Make sure that the necessary environment variables, such as `ANDROID_HOME`, are set, and the Ninja build system is in your system's `PATH`.
 Also make sure that the scripts folder is included in the `PATH`.
 
 ## Usage
